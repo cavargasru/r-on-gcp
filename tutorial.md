@@ -1,6 +1,6 @@
-# First Tutorial
+# R on GCP
 
-## First step
+## Run R-Studio in VM
 
 Hello World
 

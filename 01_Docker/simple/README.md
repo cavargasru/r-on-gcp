@@ -1,27 +1,37 @@
 # docker-rstudio-map
 
-1. Enable Compute Engine API
+1. Enable Compute Engine and Cloud Storage API
+https://console.cloud.google.com/flows/enableapi?apiid=compute,storage
 
-<button class="button-save large">Big Fat Button</button>
+2. create a folder
 
-[![Enable APIs](http://gstatic.com/cloudssh/images/open-btn.png)](http://gstatic.com/cloudssh/images/)
+```
+mkdir ~/rstudio
+```
+3. Download a service acount key JSON file in the folder created in 2
 
-https://console.cloud.google.com/flows/enableapi?apiid=compute
-1. Download a service acount key JSON file
+Follow the steps in:
+https://cloud.google.com/iam/docs/creating-managing-service-account-keys#iam-service-account-keys-create-console
 
+Make sure that the key type is google compute
+
+
+(Do not performed this yet!) To run this from the CLI:
 ```
 gcloud iam service-accounts keys create ~/key.json
   --iam-account [SA-NAME]@[PROJECT-ID].iam.gserviceaccount.com
 ```
 
-Build image
+3. Build image
 
 ```
 docker build -t map-rocker-geospatial .
 ```
 
-Run container
+4. Run container
 
 ```
-docker run -d -p 8787:8787 -v $(pwd):/home/rstudio -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
+docker run -d -p 8787:8787 -v ~/rstudio:/home/rstudio -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
 ```
+
+5. Connect to localhost:8787
