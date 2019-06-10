@@ -22,7 +22,26 @@ This tutorial will walk you through:
 Google Cloud Platform organises resources into projects. This allows you to
 collect all the related resources for a single application in one place.
 
-<walkthrough-project-billing-setup permissions="compute.instances.create"></walkthrough-project-billing-setup>
+<walkthrough-project-billing-setup></walkthrough-project-billing-setup>
+<walkthrough-project-permissions permissions="compute.instances.create"></walkthrough-project-permissions>
+
+### Set up Compute Engine
+
+To use Compute Engine, turn on the Cloud Compute Engine APIs and open the Cloud Shell.
+
+### Turn on Google Cloud APIs
+
+<walkthrough-enable-apis apis="compute.googleapis.com,storage_component,storage_api">
+</walkthrough-enable-apis>
+
+### Open the Cloud Shell
+
+Cloud Shell is a built-in, command-line tool for the console. You're going to use
+Cloud Shell to deploy your app.
+
+Open Cloud Shell by clicking the
+<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon>
+[icon][spotlight-open-devshell] in the navigation bar at the top of the console.
 
 ### Part 1
 
