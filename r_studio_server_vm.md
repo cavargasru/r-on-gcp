@@ -45,10 +45,30 @@ Open Cloud Shell by clicking the
 
 ## Download a service acount key JSON file
 
+### Add a member
+<walkthrough-menu-navigation sectionid="IAM_ADMIN_SECTION"></walkthrough-menu-navigation>
+Open the add member dialogue by clicking the
+<walkthrough-spotlight-pointer spotlightid="iam-add-member">
+  add button
+</walkthrough-spotlight-pointer> from the IAM
+bar above.
+
 ### Create a directory for your Renviron
 ```
 mkdir ~/rstudio
 ```
+### List the project service accounts
+```
+gcloud iam service-accounts list
+```
+### Create service account key
+
+
+In the example below, [SA-NAME] is the name of your service account_key
+```
+gcloud iam service-accounts keys create ~/key.json --iam-account map-r-studio-key@map-modelling-dev.iam.gserviceaccount.com
+```
+
 Download the servicea account key using the following steps in:
 https://cloud.google.com/iam/docs/creating-managing-service-account-keys#iam-service-account-keys-create-console
 
