@@ -99,11 +99,11 @@ docker build -t map-rocker-geospatial .
 docker run -d -p 8787:8787 -v ~/rstudio:/home/rstudio -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
 ```
 
-### Previewing R studio
+## Previewing R studio
 Click on the Web Preview icon Server icon in the Cloud Shell toolbar <walkthrough-web-preview-icon></walkthrough-web-preview-icon> and choose port 8787. 
 A tab in your browser opens and connects to the server you just started.
 
-## Start R studio on a VM
+### Start R studio on a VM
 
 ```R
 library(googleComputeEngineR)
@@ -116,11 +116,14 @@ vm <- gce_vm(template = "rstudio", # use this public template for now! custom te
              username = "map",
              password = "localdevpw",
              predefined_type = "n1-standard-1")
+```
 
+### Check VM status
+```R
 map_rstudio <- gce_vm("rstudio-map-demo")
 ```
 
-## Stop R studio on a VM
+### Stop R studio on a VM
 ```R
 stop <- gce_vm_stop("rstudio-map-demo")
 ```
