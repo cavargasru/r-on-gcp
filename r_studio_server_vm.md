@@ -1,5 +1,7 @@
 # RStudio server VM
 
+
+
 <walkthrough-watcher-constant value="~/r-on-gcp/01_Docker/simple" key="directory"></walkthrough-watcher-constant>
 
 ## Create an RStudio server VM
@@ -48,6 +50,7 @@ Open Cloud Shell by clicking the
 1. Open the the API & SERVICES screen.
 <walkthrough-menu-navigation sectionid="API_SECTION"></walkthrough-menu-navigation>
 2. In the left nav, click ```Credentials```.
+The [Credentials][spotlight-credentials-menu]
 3. Look for the ```Create credentials``` dropdown to create a key. Click the ```Service account key``` option in the dropdown menu.
 4. Select ```Compute Engine Default service account``` as Service account
 5. Select ```JSON``` as Key type.
@@ -55,7 +58,7 @@ Open Cloud Shell by clicking the
 
 This will download a JSON Service account key file to your local computer.
 
-## Upload service account key to cloud shell session
+## Set up R environment
 ### Create a directory for your Renviron
 ```
 mkdir ~/rstudio
@@ -65,6 +68,19 @@ cd ~/rstudio
 1. Click the More button <walkthrough-more-vert-icon> </walkthrough-more-vert-icon> in the Cloud Shell, and then click Upload file.
 2. Upload JSON Key File into ```~/rstudio```
 
+### Create .Renviron File
+1. Create .Renviron File
+```
+nano .Renviron
+```
+2. Add the content 
+```
+GCE_AUTH_FILE="/home/rstudio/your.key.json"
+GCE_DEFAULT_PROJECT_ID="your.project"
+GCE_DEFAULT_ZONE="your.project.zone"
+```
+3. ```Ctrl + S``` to save file
+4. ```Ctrl + X``` to exit ```nano```
 ## Start R studio on Cloud Shell
 
 ### Change directory
@@ -143,3 +159,6 @@ ead back to the Getting started page for more tutorials.
 [spotlight-open-devshell]: walkthrough://spotlight-pointer?spotlightId=devshell-activate-button
 [spotlight-project-select]: walkthrough://spotlight-pointer?spotlightId=purview-switcher
 [spotlight-search-bar]: walkthrough://spotlight-pointer?cssSelector=.p6n-search-bar,.pcc-platform-bar-search-bar
+
+[spotlight-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=#cfctest-section-nav-item-credentials
+
