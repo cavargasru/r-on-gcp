@@ -10,6 +10,10 @@ The goal of this tutorial is to make cloud computing with R easier, starting wit
 
 
 ### Useful Links
+
+https://airflow.apache.org/
+https://beam.apache.org/
+https://spark.apache.org/docs/latest/sparkr.html
 https://cloudyr.github.io/
 
 
