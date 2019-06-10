@@ -138,17 +138,5 @@ You’re all set!
 ```
 gcloud projects delete {{project-id}}
 ```
-
-ead back to the Getting started page for more tutorials.
-<walkthrough-menu-navigation sectionid="ONBOARDING_SECTION"></walkthrough-menu-navigation>
-
-[gcp-resources]: https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy
-[spotlight-activity-stream]: walkthrough://spotlight-pointer?cssSelector=.mat-tab-link:nth-of-type(2)
-[spotlight-console-menu]: walkthrough://spotlight-pointer?spotlightId=console-nav-menu
-[spotlight-customize-dashboard]: walkthrough://spotlight-pointer?cssSelector=.cfc-customize-button
-[spotlight-open-devshell]: walkthrough://spotlight-pointer?spotlightId=devshell-activate-button
-[spotlight-project-select]: walkthrough://spotlight-pointer?spotlightId=purview-switcher
-[spotlight-search-bar]: walkthrough://spotlight-pointer?cssSelector=.p6n-search-bar,.pcc-platform-bar-search-bar
-
 [spotlight-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=#cfctest-section-nav-item-credentials
 
