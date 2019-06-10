@@ -1,7 +1,18 @@
 # r-on-gcp
 ### R on the Google Cloud Platform.
 
-The goal of this tutorial is to make cloud computing with R easier, starting with robust tools for working with cloud computing platforms. The project’s inital work is with Google Cloud Platform.
+The goal of these tutorials is to make cloud computing with R easier, starting with robust tools for working with cloud computing platforms. 
+The project’s inital work is with Google Cloud Platform.
+
+### Tutorials
+
+#### Start RStudio Server in a VM (Docs WIP)
+
+#### Administrate dsub pipelines with Cloud Composer (In progress)
+
+#### Distribute R scripts with SparkR in Cloud Dataproc (In progress)
+
+#### Schedule R scripts with Kubernetes (To study in the future)
 
 ### Try out the code on Google Cloud Platform
 #### Launch in Cloud Shell
