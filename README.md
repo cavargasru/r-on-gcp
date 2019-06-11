@@ -21,7 +21,11 @@ Run the following command in your Cloud Shell session
 ```
 git clone https://github.com/cavargasru/r-on-gcp.git
 ```
-2. Launch a tutorial from an existing file:
+2. Enter the repo directory
+```
+cd r-on-gcp
+```
+3. Launch a tutorial from an existing file:
 ```
 teachme r_studio_server_vm.md
 ```
