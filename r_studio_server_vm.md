@@ -62,8 +62,10 @@ cd ~/rstudio
 ```
 ### Upload JSON File
 1. Click the button [More][spotlight-more-cloud-shell-menu] in the Cloud Shell, and then click Upload file.
-2. Upload JSON Key File into ```~/rstudio```
-
+2. Move JSON Key File into ```~/rstudio```
+```bash
+mv ~/file.json ~/rstudio
+```
 ### Create .Renviron File
 1. Create .Renviron File
 ```bash
@@ -109,7 +111,7 @@ A tab in your browser opens and connects to the server you just started.
 ```R
 library(googleComputeEngineR)
 
-default_project <- gce_get_project("map-modelling-dev") # change to your own key
+default_project <- gce_get_project("{{project-id}}") # change to your own key
 default_project$name
 
 vm <- gce_vm(template = "rstudio", # use this public template for now! custom templates for map specific modelling to be added soon
@@ -142,7 +144,3 @@ gcloud projects delete {{project-id}}
 [spotlight-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=#cfctest-section-nav-item-credentials
 [spotlight-more-cloud-shell-menu]: walkthrough://spotlight-pointer?cssSelector=.p6n-devshell-more-settings
 [spotlight-create-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=.jfk-button-primary
-
-
-
-
