@@ -1,8 +1,5 @@
 # RStudio server VM
-
-
-
-<walkthrough-watcher-constant value="~/r-on-gcp/01_Docker/simple" key="directory"></walkthrough-watcher-constant>
+<walkthrough-watcher-constant value="~/r-on-gcp/docker/simple" key="directory"></walkthrough-watcher-constant>
 
 ## Create an RStudio server VM
 
@@ -49,9 +46,8 @@ Open Cloud Shell by clicking the
 
 1. Open the the API & SERVICES screen.
 <walkthrough-menu-navigation sectionid="API_SECTION"></walkthrough-menu-navigation>
-2. In the left nav, click ```Credentials```.
-The [Credentials][spotlight-credentials-menu]
-3. Look for the ```Create credentials``` dropdown to create a key. Click the ```Service account key``` option in the dropdown menu.
+2. In the left nav, click [Credentials][spotlight-credentials-menu]
+3. Look for the [Create credentials][spotlight-create-credentials-menu] dropdown to create a key. Click the ```Service account key``` option in the dropdown menu.
 4. Select ```Compute Engine Default service account``` as Service account
 5. Select ```JSON``` as Key type.
 6. Click ```Create```
@@ -65,22 +61,27 @@ mkdir ~/rstudio
 cd ~/rstudio
 ```
 ### Upload JSON File
-1. Click the More button <walkthrough-more-vert-icon> </walkthrough-more-vert-icon> in the Cloud Shell, and then click Upload file.
+1. Click the button [More][spotlight-more-cloud-shell-menu] in the Cloud Shell, and then click Upload file.
 2. Upload JSON Key File into ```~/rstudio```
 
 ### Create .Renviron File
 1. Create .Renviron File
-```
+```bash
 nano .Renviron
 ```
-2. Add the content 
+2. Add the following content to the file and change accordingly 
 ```
-GCE_AUTH_FILE="/home/rstudio/your.key.json"
-GCE_DEFAULT_PROJECT_ID="your.project"
+GCE_AUTH_FILE="/home/rstudio/your.key.json" 
+GCE_DEFAULT_PROJECT_ID="{{project-id}}"
 GCE_DEFAULT_ZONE="your.project.zone"
 ```
 3. ```Ctrl + S``` to save file
 4. ```Ctrl + X``` to exit ```nano```
+5. check that the file has been well created
+```bash
+cat .Renviron
+```
+
 ## Start R studio on Cloud Shell
 
 ### Change directory
@@ -90,12 +91,12 @@ cd {{directory}}
 ```
 
 ### Build image
-```
+```bash
 docker build -t map-rocker-geospatial .
 ```
 
 ### Run container
-```
+```bash
 docker run -d -p 8787:8787 -v ~/rstudio:/home/rstudio -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
 ```
 
@@ -135,8 +136,13 @@ stop <- gce_vm_stop("rstudio-map-demo")
 You’re all set!
 
 **Don’t forget to clean up after yourself**: If you created test projects, be sure to delete them to avoid unnecessary charges. Use 
-```
+```bash
 gcloud projects delete {{project-id}}
 ```
 [spotlight-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=#cfctest-section-nav-item-credentials
+[spotlight-more-cloud-shell-menu]: walkthrough://spotlight-pointer?cssSelector=.p6n-devshell-more-settings
+[spotlight-create-credentials-menu]: walkthrough://spotlight-pointer?cssSelector=.jfk-button-primary
+
+
+
 
