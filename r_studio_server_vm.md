@@ -146,6 +146,7 @@ vm <- gce_vm(template = "rstudio", # use this public template for now! custom te
              password = "localdevpw",
              predefined_type = "n1-standard-1",
              dynamic_image = gce_tag_container("map-rocker-geospatial:tag1", project = "{{project-id}}")
+)
 ```
 
 ### Check VM status
