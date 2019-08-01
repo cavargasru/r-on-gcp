@@ -55,18 +55,26 @@ Open Cloud Shell by clicking the
 This will download a JSON Service account key file to your local computer.
 
 ## Set up R environment
+### Change directory
+Change your working directory to `{{directory}}`.
+```bash
+cd {{directory}}
+```
 ### Create a directory for your Renviron
 ```
-mkdir ~/rstudio
-cd ~/rstudio
+mkdir rstudio
 ```
 ### Upload JSON File
 1. Click the button [More][spotlight-more-cloud-shell-menu] in the Cloud Shell, and then click Upload file.
-2. Move JSON Key File into ```~/rstudio```
+2. Move JSON Key File into ```rstudio```
 ```bash
-mv ~/file.json ~/rstudio
+mv ~/file.json rstudio/
 ```
 ### Create .Renviron File
+0. Change directyory
+```
+cd rstudio
+```
 1. Create .Renviron File
 ```bash
 nano .Renviron
@@ -83,8 +91,30 @@ GCE_DEFAULT_ZONE="your.project.zone"
 ```bash
 cat .Renviron
 ```
+## Build a Docker image and Add the image to Container Registry
+For this quickstart, build the Docker image in `{{directory}}`. This Docker image contains the necessary elements to run a Rstudio instance capable to create VM in Google Compute Engine, and get data from Google Cloud Storage and Google BigQuery .
+Change your working directory to `{{directory}}`.
+```bash
+cd {{directory}}
+```
+### Build image
+```bash
+docker build -t map-rocker-geospatial .
+```
+### Tag the image with a registry name
+Before you push the Docker image to Container Registry, you need to tag it with its registry name. Tagging the Docker image with a registry name configures the docker push command to push the image to a specific location. 
+To tag the Docker image, run the following command:
+```bash
+docker tag map-rocker-geospatial gcr.io/{{project-id}}/map-rocker-geospatial:tag1
+```
+### Push the image to Container Registry
+Once docker has been configured to use gcloud as a credential helper, and the local image is tagged with the registry name, you can push it to Container Registry.
+To push the Docker image, run the following command:
+```bash
+docker push gcr.io/{{project-id}}/map-rocker-geospatial:tag1
+```
 
-## Start R studio on Cloud Shell
+## Start R studio from Cloud Shell
 
 ### Change directory
 Change your working directory to `{{directory}}`.
@@ -92,21 +122,17 @@ Change your working directory to `{{directory}}`.
 cd {{directory}}
 ```
 
-### Build image
-```bash
-docker build -t map-rocker-geospatial .
-```
-
 ### Run container
 ```bash
-docker run -d -p 8787:8787 -v ~/rstudio:/home/rstudio -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
+docker run -d -p 8787:8787 -e PASSWORD=localdevpw --name "map-rstudio-app" map-rocker-geospatial
 ```
 
-## Previewing R studio
+### Previewing R studio from Cloud Shell
+
 Click on the Web Preview icon Server icon in the Cloud Shell toolbar <walkthrough-web-preview-icon></walkthrough-web-preview-icon> and choose port 8787. 
 A tab in your browser opens and connects to the server you just started.
 
-### Start R studio on a VM
+### Start R studio on a Google Cloud Compute Engine VM
 
 ```R
 library(googleComputeEngineR)
@@ -115,10 +141,11 @@ default_project <- gce_get_project("{{project-id}}") # change to your own key
 default_project$name
 
 vm <- gce_vm(template = "rstudio", # use this public template for now! custom templates for map specific modelling to be added soon
-             name = "rstudio-map-demo",
-             username = "map",
+             name = "rstudio-map-demo-tag1",
+             username = "rstudio",
              password = "localdevpw",
-             predefined_type = "n1-standard-1")
+             predefined_type = "n1-standard-1",
+             dynamic_image = gce_tag_container("map-rocker-geospatial:tag1", project = "{{project-id}}")
 ```
 
 ### Check VM status
@@ -126,18 +153,31 @@ vm <- gce_vm(template = "rstudio", # use this public template for now! custom te
 map_rstudio <- gce_vm("rstudio-map-demo")
 ```
 
+### Connect to the VM via External IP
+You can view the external IP for an instance via ```gce_get_external_ip()```
+```R
+gce_get_external_ip("rstudio-map-demo-tag1"
+```
+Open the IP in a new browser, that will connect to the RStudio instance you just create. Use the credentials define with the ```gce_vm()``` command.
+
+### Check Google Cloud Storage Bucket
+```R
+library(googleComputeEngineR)
+library(googleCloudStorageR)
+# List objects in bucket
+objects <- gcs_list_objects(bucket = "YOUR_BUCKET_NAME", detail = c("summary"))
+```
 ### Stop R studio on a VM
 ```R
 stop <- gce_vm_stop("rstudio-map-demo")
 ```
-
 ## Conclusion
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
 You’re all set!
 
-**Don’t forget to clean up after yourself**: If you created test projects, be sure to delete them to avoid unnecessary charges. Use 
+**Optional: Don’t forget to clean up after yourself**: If you created test projects, be sure to delete them to avoid unnecessary charges. Use 
 ```bash
 gcloud projects delete {{project-id}}
 ```
