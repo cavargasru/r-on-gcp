@@ -1,8 +1,7 @@
 # r-on-gcp
 ### R on the Google Cloud Platform.
 
-The goal of these tutorials is to make make the deployment of cloud resources for R as easy as possible with a few lines from your local R session. 
-The project's inital work is with Google Cloud Platform.
+The goal of these tutorials is to make make the deployment of cloud resources for R as easy as possible with a few lines from your local RStudio. 
 
 ### Tutorials
 
