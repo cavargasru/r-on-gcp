@@ -1,5 +1,5 @@
 # GCP Project Setup
-<walkthrough-watcher-constant value="~/r-on-gcp/docker/simple" key="directory"></walkthrough-watcher-constant>
+
 ## Let's get started!
 
 This guide will show you how to configure a Google Cloud Project. It'll also walk you through generating a service account key JSON file.
