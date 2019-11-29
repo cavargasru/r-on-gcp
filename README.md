@@ -1,8 +1,7 @@
 # r-on-gcp
 ### R on the Google Cloud Platform.
 
-The goal of these tutorials is to make cloud computing with R easier, starting with robust tools for working with cloud computing platforms. 
-The project’s inital work is with Google Cloud Platform.
+The goal of these tutorials is to make make the deployment of cloud resources for R as easy as possible with a few lines from your local RStudio. 
 
 ### Tutorials
 
@@ -31,8 +30,7 @@ teachme r_studio_server_vm.md
 ```
 Run the following command in your Cloud Shell session
 #### Launch in Cloud SRun the following command in your Cloud Shell sessionhell
-[![Open in Cloud ShellRun the following command in your Cloud Shell session](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open/?git_repo=https://github.com/cavargasru/r-on-gcp.git&tutorial=r_studio_server_vm.md)
-
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fcavargasru%2Fr-on-gcp)
 ### Useful Links (WIP)
 
 https://airflow.apache.org/
